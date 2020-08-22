@@ -15,14 +15,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <!-- Container wrapper -->
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <!-- Toggle button -->
-                <button
+                    <button
                     class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -33,53 +33,61 @@
                 >
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <!-- Collapsible wrapper -->
-                <div class="collapse navbar-collapse" id="navbarRightAlignExample">
+                    <div class="collapse navbar-collapse" id="navbarRightAlignExample">
                     <!-- Left links -->
 
                     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                        @guest
+                    @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-
-                        <!-- Navbar dropdown -->
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
-                            <!-- Dropdown menu -->
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('cabinet') }}">Cabinet</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
+                                <li><a class="dropdown-item" href="{{ route('cabinet') }}">Cabinet</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                </li>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </ul>
                         </li>
-                        @endguest
+                    @endguest
                     </ul>
                     <!-- Left links -->
                 </div>
                 <!-- Collapsible wrapper -->
+                </div>
+            </nav>
+        </header>
+        <main class="py-4 main_height">
+            <div class="container">
+                @section('breadcrumbs', Breadcrumbs::render())
+                @yield('breadcrumbs')
+                @include('layouts.partials.flash')
+                @yield('content')
             </div>
-            <!-- Container wrapper -->
-        </nav>
-        <main class="py-4">
-            @yield('content')
         </main>
+        <footer class="text-center text-lg-left">
+            <div class="container">
+                <div class="text-left p-3 border-top">
+                    © {{ date('Y') }} Copyright:
+                    <a class="text-dark" href="#">Advert dashboard</a>
+                </div>
+            </div>
+        </footer>
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

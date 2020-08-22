@@ -15047,3 +15047,8 @@ fieldset:disabled .btn-group-vertical {
   background-image: radial-gradient(circle, rgba(44, 62, 80, 0.2) 0, rgba(44, 62, 80, 0.3) 40%, rgba(44, 62, 80, 0.4) 50%, rgba(44, 62, 80, 0.5) 60%, rgba(44, 62, 80, 0) 70%);
 }
 
+.main_height {
+  min-height: 100%;
+  height: 51.75rem;
+}
+

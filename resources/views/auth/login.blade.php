@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,21 +14,19 @@
                         @csrf
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input id="email" type="email" name="email" class="form-control was-invalid " value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror " value="{{ old('email') }}" required autocomplete="email" autofocus>
                             <label class="form-label" for="email">{{ __('E-Mail Address') }}</label>
                             @error('email')
-                            <div class="invalid-feedback" role="alert">Bud ili yr</div>
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input id="password" type="password" name="password" class="form-control @error('password') was-invalid @enderror" name="password" required autocomplete="current-password">
+                            <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" required autocomplete="current-password">
                             <label class="form-label" for="password">{{ __('Password') }}</label>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            @error('password')
+                                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -61,31 +60,3 @@
     </div>
 </div>
 @endsection
-@push('scripts')
-    <script>
-//         // Example starter JavaScript for disabling form submissions if there are invalid fields
-//         (function () {
-//             'use strict';
-//
-// // Fetch all the forms we want to apply custom Bootstrap validation styles to
-//             let forms = document.querySelectorAll('.needs-validation');
-//
-// // Loop over them and prevent submission
-//             Array.prototype.slice.call(forms).forEach(function (form) {
-//                 form.addEventListener(
-//                     'submit',
-//                     function (event) {
-//                         if (!form.checkValidity()) {
-//                             event.preventDefault();
-//                             event.stopPropagation();
-//                         }
-//
-//                         form.classList.add('was-validated');
-//                     },
-//                     false
-//                 );
-//             });
-//         })();
-
-    </script>
-@endpush
