@@ -18,6 +18,10 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-8">
+            <example-component></example-component>
+        </div>
+        <my-component></my-component>
     </div>
 </div>
 @endsection
