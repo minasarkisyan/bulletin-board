@@ -3,27 +3,38 @@
 @section('content')
     @include('admin.users._nav')
 
-    <form method="POST" action="{{ route('admin.users.store') }}">
-        @csrf
+    <div class="d-flex flex-row mb-3">
+        <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary mr-1">Edit</a>
+        <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="mr-1">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
 
-        <div class="form-group">
-            <label for="name" class="col-form-label">Name</label>
-            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
-            @if ($errors->has('name'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('name') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <label for="email" class="col-form-label">E-Mail Address</label>
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-            @if ($errors->has('email'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </form>
+    <table class="table table-bordered table-striped">
+        <tbody>
+        <tr>
+            <th>ID</th><td>{{ $user->id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th><td>{{ $user->name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th><td>{{ $user->email }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>
+                @if ($user->status === \App\Models\User::STATUS_WAIT)
+                    <span class="badge bg-secondary">Waiting</span>
+                @endif
+                @if ($user->status === \App\Models\User::STATUS_ACTIVE)
+                    <span class="badge bg-primary">Active</span>
+                @endif
+            </td>
+        </tr>
+        <tbody>
+        </tbody>
+    </table>
 @endsection

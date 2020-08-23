@@ -3,27 +3,35 @@
 @section('content')
     @include('admin.users._nav')
 
-    <form method="POST" action="{{ route('admin.users.store') }}">
-        @csrf
+    <p><a href="{{ route('admin.users.create') }}" class="btn btn-success">Add User</a></p>
 
-        <div class="form-group">
-            <label for="name" class="col-form-label">Name</label>
-            <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
-            @if ($errors->has('name'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('name') }}</strong></span>
-            @endif
-        </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
 
-        <div class="form-group">
-            <label for="email" class="col-form-label">E-Mail Address</label>
-            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-            @if ($errors->has('email'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Save</button>
-        </div>
-    </form>
+        @foreach ($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td><a href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a></td>
+                <td>{{ $user->email }}</td>
+                <td>
+                    @if ($user->status === \App\Models\User::STATUS_WAIT)
+                        <span class="badge bg-secondary">Waiting</span>
+                    @endif
+                    @if ($user->status === \App\Models\User::STATUS_ACTIVE)
+                        <span class="badge bg-primary">Active</span>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    {{ $users->links() }}
 @endsection
