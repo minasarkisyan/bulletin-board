@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\CreateRequest;
+use App\Http\Requests\Auth\UpdateRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class UsersController extends Controller
@@ -44,17 +43,12 @@ class UsersController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-        ]);
-
-        $data['password'] = bcrypt(Str::random());
-        $data['status'] = User::STATUS_ACTIVE;
-
-        $user = User::create($data);
+        $user = User::create($request->only(['name', 'email']) + [
+                'password' => Hash::make('password'),
+                'status' => User::STATUS_ACTIVE
+            ]);
 
         return redirect()->route('admin.users.show', $user);
     }
@@ -89,20 +83,15 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param UpdateRequest $request
      * @param User $user
      * @return RedirectResponse
-     * @throws ValidationException
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
-        $data = $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,id,' . $user->id,
-            'status' => ['required', 'string', Rule::in([User::STATUS_WAIT, User::STATUS_ACTIVE])],
-        ]);
 
-        $user->update($data);
+
+        $user->update($request->only(['name', 'email', 'status']));
 
         return redirect()->route('admin.users.show', $user);
     }
