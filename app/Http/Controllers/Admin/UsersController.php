@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\CreateRequest;
 use App\Http\Requests\Auth\UpdateRequest;
 use App\Models\User;
+use App\Services\Auth\RegisterService;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -16,6 +17,14 @@ use Illuminate\View\View;
 
 class UsersController extends Controller
 {
+    private RegisterService $register;
+
+    public function __construct(RegisterService $register)
+    {
+        $this->register = $register;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -111,7 +120,7 @@ class UsersController extends Controller
 
     public function verify(User $user)
     {
-        $user->verify();
+        $this->register->verify($user->id);
 
         return redirect()->route('admin.users.show', $user);
     }
