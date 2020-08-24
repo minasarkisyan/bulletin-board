@@ -1,14 +1,28 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ * @package App\Models
+ * @property int $id
+ * @property string $email
+ * @property string $status
+ * @property string $password
+ * @property string $verify_token
+ */
+
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public const STATUS_WAIT = 'wait';
+    public const STATUS_ACTIVE = 'active';
+
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'verify_token', 'status'
     ];
 
     /**
