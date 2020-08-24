@@ -45,10 +45,7 @@ class UsersController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $user = User::create($request->only(['name', 'email']) + [
-                'password' => Hash::make('password'),
-                'status' => User::STATUS_ACTIVE
-            ]);
+        $user = User::new($request['name'], $request['email']);
 
         return redirect()->route('admin.users.show', $user);
     }
@@ -91,7 +88,7 @@ class UsersController extends Controller
     {
 
 
-        $user->update($request->only(['name', 'email', 'status']));
+        $user->update($request->only(['name', 'email']));
 
         return redirect()->route('admin.users.show', $user);
     }
@@ -110,5 +107,12 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
 
 
+    }
+
+    public function verify(User $user)
+    {
+        $user->verify();
+
+        return redirect()->route('admin.users.show', $user);
     }
 }

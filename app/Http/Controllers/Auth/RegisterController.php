@@ -43,16 +43,16 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'verify_token' => Str::random(),
-            'status' => User::STATUS_WAIT
-        ]);
-
+        $user = User::register($request['name'], $request['email'], $request['password']);
         //Mail::to($user->email)->send(new VerifyMail($user));
         event(new Registered($user));
+
+        try {
+            $user->verify();
+            return redirect()->route('login')->with('success', 'Your email verified. You can login');
+        } catch (\DomainException $e) {
+            return redirect()->route('login')->with('error', $e->getMessage());
+        }
     }
 
     public function verify($token)

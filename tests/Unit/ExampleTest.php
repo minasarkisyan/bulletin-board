@@ -2,7 +2,8 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use App\Models\User;
 
 class ExampleTest extends TestCase
 {
@@ -14,5 +15,7 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         $this->assertTrue(true);
+        $user = User::STATUS_ACTIVE;
+        $this->assertEquals('active', $user);
     }
 }
