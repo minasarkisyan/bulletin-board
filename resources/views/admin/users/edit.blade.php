@@ -29,6 +29,20 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="role" class="col-form-label">Role</label>
+                    <select id="role" class="form-control @error is-invalid @enderror" name="role">
+                        @foreach ($roles as $value => $label)
+                            <option value="{{ $value }}"{{ $value === old('role', $user->role) ? ' selected' : '' }}>{{ $label }}</option>
+                        @endforeach;
+                    </select>
+                    @error('role')
+                        <span class="invalid-feedback">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
