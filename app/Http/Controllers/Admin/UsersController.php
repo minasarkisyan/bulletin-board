@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
@@ -28,13 +29,46 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Application|Factory|Response|View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id')->paginate(20);
+        $query = User::orderByDesc('id');
 
-        return view('admin.users.index', compact('users'));
+        if (!empty($value = $request->get('id'))) {
+            $query->where('id', $value);
+        }
+
+        if (!empty($value = $request->get('name'))) {
+            $query->where('name', 'like', '%' . $value . '%');
+        }
+
+        if (!empty($value = $request->get('email'))) {
+            $query->where('email', 'like', '%' . $value . '%');
+        }
+
+        if (!empty($value = $request->get('status'))) {
+            $query->where('status', $value);
+        }
+
+        if (!empty($value = $request->get('role'))) {
+            $query->where('role', $value);
+        }
+
+        $users = $query->paginate(20);
+
+        $statuses = [
+            User::STATUS_WAIT => 'Waiting',
+            User::STATUS_ACTIVE => 'Active',
+        ];
+
+        $roles = [
+            User::ROLE_USER => 'User',
+            User::ROLE_ADMIN => 'Admin',
+        ];
+
+        return view('admin.users.index', compact('users', 'statuses', 'roles'));
     }
 
     /**
