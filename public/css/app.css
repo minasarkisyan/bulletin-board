@@ -12847,7 +12847,7 @@ i.flag.zimbabwe:before {
   border-color: #fff;
 }
 
-.select-input.form-control[readonly] {
+.select-input.form-control[readonly]:not([disabled]) {
   background-color: transparent;
 }
 

@@ -4,7 +4,8 @@ namespace Tests\Unit\Models\User;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+
 
 class RoleTest extends TestCase
 {
