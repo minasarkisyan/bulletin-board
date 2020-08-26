@@ -4,6 +4,7 @@ use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator as Crumbs;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use App\Models\User;
 use App\Models\Region;
+use App\Models\Adverts\Category;
 
 Breadcrumbs::register('home', function (Crumbs $crumbs) {
     $crumbs->push('Home', route('home'));
@@ -104,7 +105,7 @@ Breadcrumbs::register('admin.adverts.categories.show', function (Crumbs $crumbs,
     $crumbs->push($category->name, route('admin.adverts.categories.show', $category));
 });
 
-Breadcrumbs::register('admin.adverts.categories.edit', function (Crumbs $crumbs, Region $region) {
-    $crumbs->parent('admin.adverts.categories.show', $region);
-    $crumbs->push('Edit', route('admin.adverts.categories.edit', $region));
+Breadcrumbs::register('admin.adverts.categories.edit', function (Crumbs $crumbs, Category $category) {
+    $crumbs->parent('admin.adverts.categories.show', $category);
+    $crumbs->push('Edit', route('admin.adverts.categories.edit', $category));
 });
