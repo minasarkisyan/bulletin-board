@@ -7,4 +7,7 @@
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.adverts.categories.index') }}">Categories</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('admin.users.index') }}">Users</a></li>
     </ul>
+    <div class="col">
+        <p>Home page</p>
+    </div>
 @endsection
