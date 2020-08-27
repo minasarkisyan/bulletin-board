@@ -15,7 +15,7 @@ class CreateAttributesTable extends Migration
     {
         Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('category_id');
+            $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('advert_categories')->onDelete('CASCADE');
             $table->string('name');
             $table->string('type');

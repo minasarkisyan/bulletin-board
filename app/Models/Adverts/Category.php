@@ -30,4 +30,15 @@ class Category extends Model
     {
         return $this->hasMany(Attribute::class, 'category_id', 'id');
     }
+
+    public function parentAttributes(): array
+    {
+        return $this->parent ? $this->parent->allAttributes() : [];
+    }
+
+    public function allAttributes(): array
+    {
+        return array_merge($this->parentAttributes(), $this->attributes()->orderBy('sort')->getModels());
+    }
+
 }

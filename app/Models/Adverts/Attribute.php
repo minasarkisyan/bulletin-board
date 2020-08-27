@@ -20,8 +20,6 @@ class Attribute extends Model
     public const TYPE_INTEGER = 'integer';
     public const TYPE_FLOAT = 'float';
 
-    protected $table = 'advert_attributes';
-
     public $timestamps = false;
 
     protected $fillable = ['name', 'type', 'required', 'default', 'variants', 'sort'];
