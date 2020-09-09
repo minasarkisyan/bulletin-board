@@ -3,11 +3,9 @@
 @import './free/functions';
 
 // CORE VARIABLES
+@import './custom/variables';
 @import './free/variables';
 @import './bootstrap/variables';
-
-//CUSTOM VARIABLES
-@import './custom/variables';
 
 // BOOTSTRAP CORE
 @import './bootstrap/mixins';

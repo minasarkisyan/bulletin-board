@@ -28,11 +28,15 @@ class RegionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255|unique:regions,name,NULL,id,parent_id,' . ($request['parent'] ?: 'NULL'),
-            'slug' => 'required|string|max:255|unique:regions,slug,NULL,id,parent_id,' . ($request['parent'] ?: 'NULL'),
-            'parent' => 'optional|exists:regions,id',
-        ]);
+
+
+//        $request->validate([
+//            'name' => 'required|string|max:255|unique:regions,name,NULL,id,parent_id,' . ($request['parent'] ?: 'NULL'),
+//            'slug' => 'required|string|max:255|unique:regions,slug,NULL,id,parent_id,' . ($request['parent'] ?: 'NULL'),
+//            'parent' => 'optional|exists:regions,id',
+//        ]);
+
+        //dd($request);
 
         $region = Region::create([
             'name' => $request['name'],
