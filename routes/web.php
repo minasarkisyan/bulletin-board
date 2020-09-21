@@ -7,7 +7,25 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('register.verify');
-Route::get('/cabinet', 'Cabinet\HomeController@index')->name('cabinet');
+Route::group(
+    [
+        'prefix' => 'cabinet',
+        'as' => 'cabinet.',
+        'namespace' => 'Cabinet',
+        'middleware' => ['auth'],
+    ],
+    function () {
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::group(['prefix' => 'profile', 'as' => 'profile.'], function () {
+            Route::get('/', 'ProfileController@index')->name('home');
+            Route::get('/edit', 'ProfileController@edit')->name('edit');
+            Route::put('/update', 'ProfileController@update')->name('update');
+            Route::post('/phone', 'PhoneController@request');
+            Route::get('/phone', 'PhoneController@form')->name('phone');
+            Route::put('/phone', 'PhoneController@verify')->name('phone.verify');
+        });
+    }
+);
 Route::group(
     [
         'prefix' => 'admin',
