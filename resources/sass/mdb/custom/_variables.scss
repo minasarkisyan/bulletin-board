@@ -5,7 +5,6 @@ $emerland: #2ecc71;
 $nephritis: #27ae60;
 $peterriver: #3498db;
 $belizehole: #2980b9;
-$c_blue: #3f88eb;
 $amethyst: #9b59b6;
 $wisteria: #8e44ad;
 $wetasphalt: #34495e;
@@ -14,7 +13,6 @@ $sunflower: #f1c40f;
 $orange: #f39c12;
 $carrot: #e67e22;
 $pumpkin: #d35400;
-$tomato: #ff6347;
 $alizarin: #e74c3c;
 $pomegranate: #c0392b;
 $clouds: #ecf0f1;
@@ -22,9 +20,21 @@ $silver: #bdc3c7;
 $concrete: #95a5a6;
 $asbestos: #7f8c8d;
 
+// Custom theme colors_01
+$primary_01: #264653;
+$secondary_01: #2a9d8f;
+$info_01: #f4a261;
+$warning_01: #e9c46a;
+$danger_01: #e76f51;
+$c_blue: #3f88eb;
+$tomato: #ff6347;
+$indigo_01: #6610f2;
+$cyan_01: #17a2b8;
+$white: #fff;
+$black: rgb(15, 15, 15);
 
 $blue: $peterriver;
-$indigo: #6610f2;
+$indigo: $indigo_01;
 $purple: $amethyst;
 $pink: $alizarin;
 $red: $tomato;
@@ -32,8 +42,7 @@ $orange: $carrot;
 $yellow: $sunflower;
 $green: $emerland;
 $teal: $turquoise;
-$cyan: #17a2b8;
-$white: #fff;
+$cyan: $cyan_01;
 
 // scss-docs-start colors-map
 $colors: (
@@ -63,46 +72,40 @@ $light: $clouds;
 $dark: $midnightblue;
 
 $theme-colors: (
-    "primary":    $primary,
-    "secondary":  $secondary,
-    "success":    $success,
-    "info":       $info,
-    "warning":    $warning,
-    "danger":     $danger,
-    "light":      $light,
-    "dark":       $dark
+  'primary': $primary,
+  'secondary': $secondary,
+  'success': $success,
+  'info': $info,
+  'warning': $warning,
+  'danger': $danger,
+  'light': $light,
+  'dark': $dark,
+  'white': $white,
+  'black': $black,
 );
 
+// Theme colors
+// $primary: #1266f1;
+// $secondary: #b23cfd;
+// $success: #00b74a;
+// $info: #39c0ed;
+// $warning: #ffa900;
+// $danger: #f93154;
+// $light: $gray-50;
+// $dark: $gray-900;
 
-$body-color: $wetasphalt;
-$link-color: $primary;
+// scss-docs-start theme-colors-map
+// $theme-colors: (
+//   'primary': $primary,
+//   'secondary': $secondary,
+//   'success': $success,
+//   'info': $info,
+//   'warning': $warning,
+//   'danger': $danger,
+//   'light': $light,
+//   'dark': $dark,
+//   'white': $white,
+//   'black': $black,
+// );
+// scss-docs-end theme-colors-map
 
-/*Input check & radio button custom*/
-
-$input-focus-label-color: $primary;
-$input-focus-border-color: $primary;
-$form-check-input-checked-border-color: $primary;
-$form-check-input-checked-focus-border-color: $primary;
-$form-check-input-checked-focus-before-box-shadow: 0px 0px 0px 13px $primary;
-$form-check-input-checkbox-checked-background-color: $primary;
-$form-check-input-checkbox-checked-focus-background-color: $primary;
-$form-check-input-indeterminate-focus-before-box-shadow: 0px 0px 0px 13px $primary;
-$form-check-input-indeterminate-checked-background-color: $primary;
-$form-check-input-indeterminate-focus-background-color: $primary;
-$form-check-input-radio-checked-after-border-color: $primary;
-$form-check-input-radio-checked-after-background-color: $primary;
-$form-switch-form-check-input-checked-focus-before-box-shadow: 3px -1px 0px 13px $primary;
-$form-switch-form-check-input-checked-checkbox-after-background-color: $primary;
-$form-file-label-focus-border-color: $primary;
-$input-group-focus-border-color: $primary;
-$input-group-focus-box-shadow: inset 0 0 0 1px $primary;
-$form-feedback-valid-color: $success;
-$form-feedback-invalid-color: $danger;
-
-/* Scrollspy */
-$scrollspy-menu-sidebar-active-color: $primary;
-$scrollspy-menu-sidebar-active-border-color: $primary;
-$scrollspy-menu-sidebar-active-color: $primary;
-$scrollspy-menu-sidebar-active-border-color: $primary;
-$input-placeholder-color: $wetasphalt;
-$input-plaintext-color: $body-color;
