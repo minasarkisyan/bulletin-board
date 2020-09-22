@@ -24,6 +24,7 @@ Route::group(
             Route::get('/phone', 'PhoneController@form')->name('phone');
             Route::put('/phone', 'PhoneController@verify')->name('phone.verify');
         });
+        Route::resource('adverts', 'Adverts\AdvertController');
     }
 );
 Route::group(

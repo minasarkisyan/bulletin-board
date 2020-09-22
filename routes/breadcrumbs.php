@@ -33,6 +33,11 @@ Breadcrumbs::register('password.reset', function (Crumbs $crumbs) {
 
 // Cabinet
 
+Breadcrumbs::register('cabinet.adverts.index', function (Crumbs $crumbs) {
+    $crumbs->parent('cabinet.home');
+    $crumbs->push('Adverts', route('cabinet.adverts.index'));
+});
+
 Breadcrumbs::register('cabinet.home', function (Crumbs $crumbs) {
     $crumbs->parent('home');
     $crumbs->push('Cabinet', route('cabinet.home'));
