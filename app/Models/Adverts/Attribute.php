@@ -47,6 +47,11 @@ class Attribute extends Model
         return $this->type === self::TYPE_INTEGER;
     }
 
+    public function isNumber(): bool
+    {
+        return $this->isInteger() || $this->isFloat();
+    }
+
     public function isFloat(): bool
     {
         return $this->type === self::TYPE_FLOAT;

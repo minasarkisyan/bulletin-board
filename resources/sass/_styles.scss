@@ -185,3 +185,16 @@ form.was-validated select:valid ~ .select2-container--bootstrap4 .select2-select
     background-color: #afafaf; }
 
 /*=== END SELECT2 ===*/
+
+
+.adverts-list {
+    .advert {
+        margin: 20px 0;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+
+        &:first-of-type {
+            margin-top: 0;
+        }
+    }
+}
