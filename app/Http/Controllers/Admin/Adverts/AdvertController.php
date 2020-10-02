@@ -9,7 +9,7 @@ use App\Http\Requests\Adverts\AttributesRequest;
 use App\Http\Requests\Adverts\EditRequest;
 use App\Http\Requests\Adverts\PhotosRequest;
 use App\Http\Requests\Adverts\RejectRequest;
-use App\UseCases\Adverts\AdvertService;
+use App\Services\Adverts\AdvertService;
 use Illuminate\Http\Request;
 
 class AdvertController extends Controller
