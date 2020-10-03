@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Adverts\AttributesRequest;
 use App\Http\Requests\Adverts\EditRequest;
 use App\Http\Requests\Adverts\PhotosRequest;
-use App\UseCases\Adverts\AdvertService;
+use App\Services\Adverts\AdvertService;
 use Illuminate\Support\Facades\Gate;
 
 class ManageController extends Controller

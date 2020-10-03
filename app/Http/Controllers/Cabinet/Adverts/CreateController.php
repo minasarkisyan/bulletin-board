@@ -6,7 +6,7 @@ use App\Models\Adverts\Category;
 use App\Models\Region;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Adverts\CreateRequest;
-use App\UseCases\Adverts\AdvertService;
+use App\Services\Adverts\AdvertService;
 use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
